@@ -20,25 +20,26 @@ gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
 gui.Parent = player:WaitForChild("PlayerGui")
 
---// Music
+local SoundService = game:GetService("SoundService")
+
 local music = Instance.new("Sound")
 music.Name = "KusikageMusic"
 music.SoundId = "rbxassetid://76650356472656"
 music.Volume = 0.2
-bgm.Parent   = SoundService
+music.Looped = true
+music.Parent = SoundService
 
+pcall(function()
+	music:Play()
+end)
 
-	pcall(function() bgm:Play() bgm.TimePosition = 5 end)
-	task.spawn(function()
-		while bgm and bgm.IsPlaying do
-			if bgm.TimePosition >= 15 then  -- 1:40
-				pcall(function() bgm:Stop(); bgm:Destroy() end)
-				return
-			end
-			task.wait(0.5)
-		end
-		pcall(function() bgm:Destroy() end)
-	end)
+-- Stop after 15 seconds
+task.delay(15, function()
+	if music and music.Parent then
+		music:Stop()
+		music:Destroy()
+	end
+end)
 
 --// Loading Screen
 local loading = Instance.new("Frame")
