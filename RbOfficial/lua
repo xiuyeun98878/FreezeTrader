@@ -24,7 +24,7 @@ gui.Parent = player:WaitForChild("PlayerGui")
 local music = Instance.new("Sound")
 music.Name = "KusikageMusic"
 music.SoundId = "rbxassetid://76650356472656"
-music.Volume = 0
+music.Volume = 0.3
 music.Looped = true
 music.Parent = gui
 music:Play()
